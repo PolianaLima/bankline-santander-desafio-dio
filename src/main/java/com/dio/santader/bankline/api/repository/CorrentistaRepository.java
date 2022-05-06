@@ -4,4 +4,7 @@ import com.dio.santader.bankline.api.model.Correntista;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CorrentistaRepository extends JpaRepository<Correntista, Integer> {
+
+    Correntista findByCpf (String cpf);
+
 }

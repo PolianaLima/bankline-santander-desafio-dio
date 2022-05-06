@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class MovimentacaoService {
@@ -30,7 +31,7 @@ public class MovimentacaoService {
         }
 
         movimentacao.setDataHora(LocalDateTime.now());
-        movimentacao.setDescricao(novaMovimentacao.getDescricao());
+        movimentacao.setDescricao(novaMovimentacao.getDescricao().toUpperCase());
         movimentacao.setIdConta(novaMovimentacao.getIdConta());
         movimentacao.setTipo(novaMovimentacao.getTipo());
         movimentacao.setValor(valor);
@@ -43,5 +44,13 @@ public class MovimentacaoService {
         repository.save(movimentacao);
 
 
+    }
+
+    public List<Movimentacao> findAll() {
+        return repository.findAll();
+    }
+
+    public List<Movimentacao> findByIdConta(Integer idConta) {
+        return repository.findByIdConta(idConta);
     }
 }

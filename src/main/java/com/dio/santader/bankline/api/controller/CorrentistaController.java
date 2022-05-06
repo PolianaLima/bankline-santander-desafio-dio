@@ -1,5 +1,6 @@
 package com.dio.santader.bankline.api.controller;
 
+import com.dio.santader.bankline.api.dto.CorrentistaResponse;
 import com.dio.santader.bankline.api.dto.NovoCorrentista;
 import com.dio.santader.bankline.api.model.Correntista;
 import com.dio.santader.bankline.api.repository.CorrentistaRepository;
@@ -14,14 +15,12 @@ import java.util.List;
 public class CorrentistaController {
 
     @Autowired
-    private CorrentistaRepository repository;
-
-    @Autowired
     private CorrentistaService service;
 
     @GetMapping
-    public List<Correntista>findAll(){
-        return  repository.findAll();
+    public List<CorrentistaResponse>findAll(){
+        List<Correntista> correntistaList = service.findAll();
+        return CorrentistaResponse.wrapper(correntistaList);
     }
 
     @PostMapping
